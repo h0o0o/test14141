@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📚 개인 맞춤 도서 추천 시스템</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">📚 BookMatch</h1>
+      <div class="user-info">
+        <span id="userName">사용자</span>
+        <span class="points">🏆 <span id="userPoints">0</span>P</span>
+        <span class="rank">🎖️ 랭킹: <span id="userRank">-</span>위</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 탭 네비게이션 -->
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="recommend">AI 추천</button>
+      <button class="tab-btn" data-tab="popular">인기 도서</button>
+      <button class="tab-btn" data-tab="mybooks">내 도서</button>
+      <button class="tab-btn" data-tab="ranking">랭킹</button>
+    </nav>
+
+    <!-- AI 추천 탭 -->
+    <section id="recommend" class="tab-content active">
+      <div class="section-header">
+        <h2>🤖 AI 맞춤 도서 추천</h2>
+        <button id="refreshRecommend" class="btn-refresh">🔄 새로고침</button>
+      </div>
+      
+      <div class="genre-selector">
+        <label>선호 장르 설정:</label>
+        <div class="genre-tags" id="genreTags">
+          <button class="genre-tag" data-genre="소설">소설</button>
+          <button class="genre-tag" data-genre="시">시</button>
+          <button class="genre-tag" data-genre="에세이">에세이</button>
+          <button class="genre-tag" data-genre="자기계발">자기계발</button>
+          <button class="genre-tag" data-genre="과학">과학</button>
+          <button class="genre-tag" data-genre="역사">역사</button>
+          <button class="genre-tag" data-genre="철학">철학</button>
+          <button class="genre-tag" data-genre="경제">경제</button>
+        </div>
+      </div>
+
+      <div id="recommendedBooks" class="book-grid"></div>
+    </section>
+
+    <!-- 인기 도서 탭 -->
+    <section id="popular" class="tab-content">
+      <div class="section-header">
+        <h2>🔥 실시간 인기 도서</h2>
+        <div class="auto-refresh">
+          <span id="lastUpdate">마지막 업데이트: -</span>
+          <button id="manualRefresh" class="btn-refresh">🔄</button>
+        </div>
+      </div>
+      <div id="popularBooks" class="book-grid"></div>
+    </section>
+
+    <!-- 내 도서 탭 -->
+    <section id="mybooks" class="tab-content">
+      <h2>📖 내 대출 기록</h2>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value" id="totalBorrowed">0</div>
+          <div class="stat-label">총 대출 권수</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="totalPoints">0</div>
+          <div class="stat-label">누적 포인트</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="currentBorrowed">0</div>
+          <div class="stat-label">현재 대출 중</div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 30px;">대출 이력</h3>
+      <div id="borrowHistory" class="history-list"></div>
+    </section>
+
+    <!-- 랭킹 탭 -->
+    <section id="ranking" class="tab-content">
+      <h2>🏆 사용자 랭킹</h2>
+      <p class="ranking-desc">책을 많이 읽고 포인트를 모아 상위권에 도전하세요!</p>
+      <div id="userRanking" class="ranking-list"></div>
+    </section>
+  </main>
+
+  <!-- 도서 상세 모달 -->
+  <div id="bookModal" class="modal hidden">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal">✕</button>
+      <div id="bookDetail"></div>
+    </div>
+  </div>
+
+  <!-- 알림 컨테이너 -->
+  <div id="notification" class="notification hidden"></div>
+
+  <footer class="footer">
+    <p>© 2025 BookMatch - 개인 맞춤 도서 추천 시스템</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
